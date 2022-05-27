@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+    
+    <!-- Title Page-->
+    <title>Final Project 3 Deployment</title>
+
+    <!-- Icons font CSS-->
+    <link href="{{ url_for('static', filename='vendor/mdi-font/css/material-design-iconic-font.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ url_for('static', filename='vendor/font-awesome-4.7/css/font-awesome.min.css') }}" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="{{ url_for('static', filename='vendor/select2/select2.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ url_for('static', filename='vendor/datepicker/daterangepicker.css') }}" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" media="all">
+
+</head>
+<body>
+    <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-1">
+                <div class="card-heading"></div>
+                <div class="card-body">
+                    <h2 class="title">Prediksi Pasien</h2>
+                    <form action="{{ url_for('predict') }}" method="POST">
+                        <div class="input-group">
+                            <div class="col">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" placeholder="Usia (40.0 - 95.0) (tahun.bulan)" name="Usia">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select name="Anaemia">
+                                            <option disabled="disabled" selected="selected">ANEMIA</option>
+                                            <option value="0">Pasien Tidak Mengidap Anemia</option>
+                                            <option value="1">Pasien Mengidap Anemia</option>
+                                        </select>
+                                    <div class="select-dropdown"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" placeholder="Level Enzim CPK (mcg/L)" name="EnzimCPK">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select name="Diabetes">
+                                            <option disabled="disabled" selected="selected">DIABETES</option>
+                                            <option value="0">Pasien Tidak Memiliki Riwayat Diabetes</option>
+                                            <option value="1">Pasien Memiliki Riwayat Diabetes</option>
+                                        </select>
+                                    <div class="select-dropdown"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" name="PecahanEjeksi" placeholder="Banyak Darah Keluar Jantung (%)" required>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select name="TekananDarahTinggi">
+                                            <option disabled="disabled" selected="selected">DARAH TINGGI</option>
+                                            <option value="0">Pasien Tidak Memiliki Darah Tinggi</option>
+                                            <option value="1">Pasien Memiliki Darah Tinggi</option>
+                                        </select>
+                                    <div class="select-dropdown"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" name="Trombosit" placeholder="Banyak Platelet/Trombosit (kiloplatelets/mL)" required>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" name="KreatininSerum" placeholder="Level Serum Kreatinin (mg/dL)" required>
+                                </div>
+                            </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" name="SodiumSerum" placeholder="Level Serum Sodium (mEq/dL)" required="required" />
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select name="JenisKelamin">
+                                            <option disabled="disabled" selected="selected">JENIS KELAMIN</option>
+                                            <option value="0">Perempuan</option>
+                                            <option value="1">Laki-Laki</option>
+                                        </select>
+                                    <div class="select-dropdown"></div>                                
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col">
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select name="Merokok">
+                                            <option disabled="disabled" selected="selected">MEROKOK</option>
+                                            <option value="0">Pasien Tidak Merokok</option>
+                                            <option value="1">Pasien Merokok</option>
+                                        </select>
+                                    <div class="select-dropdown"></div>        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" name="Waktu" placeholder="Waktu Sebelum Follow-Up Berikutnya (Hari)" required="required" />
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="p-t-20">
+                            <button class="btn btn--radius btn--green" type="submit">Prediksi</button>
+                        </div>
+                        <div class="p-t-20">
+                            <b class="message">{{ prediction_text_RFC }}</b>
+                            <br><br>
+                            <b class="message">{{ prediction_text_RRF }}</b>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="container">
+          <span class="text-muted"><center><b>3rd Hacktiv8 Final Project</b></center></span>
+          <span class="text-muted"><center>Kezario Mohammad Anaqi (PYTN-KS04-005)</center></span>
+          <span class="text-muted"><center>Helmi Saifullah Mansur (PYTN-KS04-010)</center></span>
+          <br>
+          <span class="text-muted"><center><b>Our Other Projects</b></center></span>
+          <span class="text-muted"><a href='https://h8-fp1-linreg.herokuapp.com/' style="text-decoration: none; color: black;"><center>1st Final Project - Linear Regression</center></a></span>
+          <span class="text-muted"><a href='https://fp2-lg-svm-h8.herokuapp.com/' style="text-decoration: none; color: black;"><center>2nd Final Project - Logistic Regression & SVM</center></a></span>
+          <span class="text-muted"><center>4th Final Project - Clustering (SOON)</center></span>
+        </div>
+      </footer>
+    
+    <!-- Jquery JS-->
+    <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+    <!-- Vendor JS-->
+    <script src="{{ url_for('static', filename='vendor/select2/select2.min.js') }}"></script>
+    
+    <!-- Main JS-->
+    <script src="{{ url_for('static', filename='js/global.js') }}"></script>
+    
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
